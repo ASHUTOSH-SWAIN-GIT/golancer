@@ -69,3 +69,11 @@ func (s *ServerPool) GetNextHealthyServer() *Backend {
 
 	return nil
 }
+
+func (b *Backend) IncrementActiveConnections() {
+	atomic.AddInt64(&b.ActiveConnections, 1)
+}
+
+func (b *Backend) DecrementActiveConnections() {
+	atomic.AddInt64(&b.ActiveConnections, -1)
+}
