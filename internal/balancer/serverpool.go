@@ -49,7 +49,7 @@ func (s *ServerPool) NextIndex() int {
 
 func (s *ServerPool) GetNextHealthyServer() *Backend {
 	s.mu.RLock()
-	defer s.mu.Unlock()
+	defer s.mu.RUnlock()
 
 	TotalServers := len(s.backends)
 	if TotalServers == 0 {
